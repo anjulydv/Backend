@@ -8,4 +8,4 @@ const myschema = new Schema({
 });
 
 
-model( 'users' , myschema);
+module.exports=model( 'users' , myschema);

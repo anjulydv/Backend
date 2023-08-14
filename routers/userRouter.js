@@ -1,37 +1,56 @@
 const express = require('express');
- // type req and then enter
 
- const router = express.Router( );
+const Model = require('../models/userModel');
+// type req and then enter
 
- router.get('/add ',( req, res) => {
-    res.send( 'Response from user add');
- 
- });
- router.get('/getall ',( req, res) => {
-    res.send( 'Response from user getall');
- 
- });
- router.get('/getbyid ',( req, res) => {
-    res.send( 'Response from user getbyid');
- 
- });
- router.get('/delete ',( req, res) => {
-    res.send( 'Response from user delete');
- 
- });
- router.get('/update',( req, res) => {
-    res.send( 'Response from user update');
- 
- });
- module.exports = router;
+const router = express.Router();
 
- //getall
- //getbyid
- //delete
- //update
+router.post('/add', (req, res) => {
+   console.log(req.body);
+
+   new Model( req.body).save( )
+   .then((result) =>{
+      res.json(result);
+   })
+   .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+   });
 
 
+});
+router.get('/getall', (req, res) => {
+   Model.find({  })
+   .then((result) =>{
+      res.json(result);
+   })
+   .catch((err) => {
+      res.status(500).json(err);
+   });
+   
+
+});
+router.post('/getbyid', (req, res) => {
+   res.send('Response from user getbyid');
+
+});
+router.post('/delete', (req, res) => {
+   res.send('Response from user delete');
+
+});
+router.post('/update', (req, res) => {
+   res.send('Response from user update');
+
+});
+module.exports = router;
+
+//getall
+//getbyid
+//delete
+//update
 
 
- module.exports = router; //i for importing in index.js
+
+
+module.exports = router; //i for importing in index.js
 

@@ -10,7 +10,9 @@ const blogRouter =require( './routers/blogRouter');
 const app = express();
 const port = 5000;
 
-//middleware
+//middleware-modify the request and forward the message 
+
+app.use(express.json ());
 app.use('/user', userRouter );
 app.use('/blog', blogRouter );
 
