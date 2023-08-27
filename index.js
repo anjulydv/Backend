@@ -4,6 +4,13 @@ const express = require("express");
 //importing routers
 const userRouter =require( './routers/userRouter');
 const blogRouter =require( './routers/blogRouter');
+// const productRouter =require( './routers/productRouter');
+const utilRouter =require( './routers/util');
+
+
+//json is used in every language and is easy to handle in every language and convert into one to another language
+
+const cors = require('cors');
 
 
 // initialize express app
@@ -13,8 +20,15 @@ const port = 5000;
 //middleware-modify the request and forward the message 
 
 app.use(express.json ());
+
+app.use(cors( { 
+    origin: [ 'http://localhost:3000']
+} ) )
 app.use('/user', userRouter );
 app.use('/blog', blogRouter );
+// app.use('/product', productRouter );
+app.use('/util', utilRouter );
+app.use(express.static('./uploads'));
 
 //routes
 
